@@ -1,0 +1,14 @@
+SUBDIRS := $(wildcard */.)
+
+all: $(SUBDIRS)
+$(SUBDIRS):
+	@$(MAKE) -C $@
+
+link: students
+	$(CC) $(LINKFLAGS) $(OBJECTS)  -o $@
+
+.PHONY: all $(SUBDIRS) link
+
+
+clean: 
+	@find . -name \*.o -exec rm -f {} \; -print
