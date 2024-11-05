@@ -2,11 +2,27 @@
 CC = g++
 CFLAGS = -g
 
-all: students
-	@find . -type d -depth 1 -exec make -C {} \;	
-	find . -name \*.o | xargs g++ -o $< 	
+%.o : %.cpp
+	$(CC) -c $(CFLAGS) $< -o $@
+
+objects = \
+	main/main.o \
+	mvc/Url.o \
+	mvc/Dispatcher.o \
+	services/StudentsService.o \
+	controllers/StudentsController.o
+
+executable = \
+	students
+
+compile: $(objects)
+
+link:
+	g++ $(objects) -o $(executable)	
+
+all: compile link
 
 clean: 
-	@find . -name \*.o -exec rm -f {} \; -print
+	rm -f $(objects) $(executable)
 
 

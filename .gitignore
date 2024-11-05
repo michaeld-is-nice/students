@@ -2,3 +2,5 @@
 .clangd
 students.mk
 students.project
+*.o
+src/students
