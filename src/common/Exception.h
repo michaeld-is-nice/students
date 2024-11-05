@@ -5,12 +5,12 @@ using namespace std;
 
 class Exception
 {
-	string message; 
+	string msMessage; 
 	
 public:
-	Exception(string _message) : message(_message) {};
+	Exception(string sMessage) : msMessage(sMessage) {};
 	virtual ~Exception() {};
 	
-	string getMessage() { return message; }
+	string getMessage() { return msMessage; }
 };
 

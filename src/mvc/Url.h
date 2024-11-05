@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 #include "../common/Exception.h"
 
@@ -20,16 +21,27 @@ public:
 	virtual ~UrlException() {};
 };
 
-HTTP_METHOD resolveHttpMethod(string&) throw(UrlException);
+HTTP_METHOD resolveHttpMethod(const string&) throw(UrlException);
 	
 class Url
 {
-	HTTP_METHOD method;
-	string url;
+	HTTP_METHOD mMethod;
+	string mUri;
 	
 public:
-	Url(HTTP_METHOD m, string u) : method(m), url(u) {};
+	Url(HTTP_METHOD method, const string uri) : mMethod(method), mUri(uri) {};
 	~Url() {};
+	
+	friend ostream& operator<< (ostream&, const Url&);
+	
+	bool uriStartsWith(const string& prefix);
+	bool isComply(const Url& url, HTTP_METHOD method, const string& prefix);
+	
+	HTTP_METHOD getMethod() { return mMethod; }
+	string getUri() { return mUri; }
+	
+private:
+	string methodAsString() const;
 };
 
 }

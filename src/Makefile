@@ -10,6 +10,7 @@ objects = \
 	mvc/Url.o \
 	mvc/Dispatcher.o \
 	services/StudentsService.o \
+	controllers/BaseController.o \
 	controllers/StudentsController.o
 
 executable = \

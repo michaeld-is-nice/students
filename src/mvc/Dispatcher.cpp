@@ -1,39 +1,52 @@
 #include "Dispatcher.h"
+#include "Url.h"
 
 #include <iostream>
 
 #include "../common/Exception.h"
-#include "Url.h"
+#include "../common/Terminator.h"
+
+#include "../controllers/BaseController.h"
+#include "../controllers/StudentsController.h"
 
 using namespace std;
 
-mvc::Dispatcher::Dispatcher()
-{
-}
-
-mvc::Dispatcher::~Dispatcher()
-{
-}
-
 int mvc::Dispatcher::dispatch() {
 	
-	char *methodEnv = getenv("HTTP_METHOD");
+	char *pszMethod = getenv("HTTP_METHOD");
+	char *pszUri = getenv("HTTP_URL");
 	
-	if (methodEnv != NULL) {
-		string methodStr(methodEnv);
+	if (pszMethod != NULL && pszUri != NULL) {
+		
+		string sMethod(pszMethod);
+		string sUri(pszUri);
+		
+		Terminator<BaseController> mtController;
 		
 		try {
-			Url url(resolveHttpMethod(methodStr), string(""));
-		
-			return 200;
-		} catch (Exception e) {
+						
+			Url url(resolveHttpMethod(sMethod), sUri);
 			
-			cout << "Exception while processing request " << e.getMessage() << endl;
+			if (url.uriStartsWith("/student"))
+				mtController = new StudentsController();
+				
+			if (mtController.isEmpty()) {
+				cout << "No handler is found for " << url;
+			}
+				
+			return mtController->handleRequest(url);
+		} catch (UrlException ex) {	
+			
+			cout << "UrlException while processing request " << ex.getMessage();
+			return 400;
+		} catch (Exception ex) {
+			
+			cout << "Exception while processing request " << ex.getMessage();
 			return 500;
 		}
 	} else {
 		
-		cout << "HTTP_METHOD environment variable is missing" << endl; 
+		cout << "HTTP_METHOD or HTTP_URL environment variable are missing"; 
 		
 		return 256;
 	}
