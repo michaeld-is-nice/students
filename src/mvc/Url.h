@@ -21,7 +21,7 @@ public:
 	virtual ~UrlException() {};
 };
 
-HTTP_METHOD resolveHttpMethod(const string&) throw(UrlException);
+HTTP_METHOD resolveHttpMethod(const string&);
 	
 class Url
 {

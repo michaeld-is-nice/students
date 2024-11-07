@@ -1,5 +1,5 @@
 
-CC = g++
+CC = g++ --std=c++23
 CFLAGS = -g
 
 %.o : %.cpp

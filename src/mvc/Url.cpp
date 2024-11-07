@@ -7,7 +7,7 @@
 using namespace std;
 using namespace mvc;
 
-HTTP_METHOD mvc::resolveHttpMethod(const string& sMethod) throw(UrlException) {
+HTTP_METHOD mvc::resolveHttpMethod(const string& sMethod) {
 	
 	if (sMethod == "GET")
 		return GET;

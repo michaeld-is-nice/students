@@ -6,6 +6,6 @@ class StudentsController : public BaseController
 {
 public:
 	
-	virtual int handleRequest(const mvc::Url url) throw (ControllerException);
+	virtual int handleRequest(const mvc::Url url);
 };
 

@@ -9,6 +9,6 @@ public:
 	BaseController() {};
 	virtual ~BaseController() {};
 
-	virtual int handleRequest(const mvc::Url url) throw (ControllerException) = 0;
+	virtual int handleRequest(const mvc::Url url) = 0;
 };
 

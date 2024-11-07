@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-int StudentsController::handleRequest(const mvc::Url url) throw (ControllerException) {
+int StudentsController::handleRequest(const mvc::Url url) {
 
 	std::cout << "{}";
 	
