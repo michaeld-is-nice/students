@@ -7,6 +7,7 @@ CFLAGS = -g
 
 objects = \
 	main/main.o \
+	common/Logger.o \
 	mvc/Url.o \
 	mvc/Dispatcher.o \
 	services/StudentsService.o \

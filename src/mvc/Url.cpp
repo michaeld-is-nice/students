@@ -15,11 +15,11 @@ HTTP_METHOD mvc::resolveHttpMethod(const string& sMethod) {
 	throw UrlException(string("Wrong HTTP method ") + sMethod);	
 }
 
-ostream& mvc::operator<< (ostream& s, const Url& url) {
+Logger& mvc::operator<< (Logger& log, const Url& url) {
 
-    s << "Url: { method: " << url.methodAsString() << ", uri: " << url.mUri << "}";
+    log << "Url: { method: " << url.methodAsString() << ", uri: " << url.mUri << "}";
 
-    return s;
+    return log;
 }
 
 bool Url::uriStartsWith(const string& sPrefix) {

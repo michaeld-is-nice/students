@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "../common/Exception.h"
+#include "../common/Logger.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ public:
 	Url(HTTP_METHOD method, const string uri) : mMethod(method), mUri(uri) {};
 	~Url() {};
 	
-	friend ostream& operator<< (ostream&, const Url&);
+	friend Logger& operator<< (Logger&, const Url&);
 	
 	bool uriStartsWith(const string& prefix);
 	bool isComply(const Url& url, HTTP_METHOD method, const string& prefix);

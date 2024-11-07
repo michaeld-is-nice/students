@@ -5,6 +5,7 @@
 
 #include "../common/Exception.h"
 #include "../common/Terminator.h"
+#include "../common/Logger.h"
 
 #include "../controllers/BaseController.h"
 #include "../controllers/StudentsController.h"
@@ -31,22 +32,22 @@ int mvc::Dispatcher::dispatch() {
 				mtController = new StudentsController();
 				
 			if (mtController.isEmpty()) {
-				cout << "No handler is found for " << url;
+				err << "No handler is found for " << url << "\n";
 			}
 				
 			return mtController->handleRequest(url);
 		} catch (UrlException ex) {	
 			
-			cout << "UrlException while processing request " << ex.getMessage();
+			err << "UrlException while processing request " << ex.getMessage();
 			return 400;
 		} catch (Exception ex) {
 			
-			cout << "Exception while processing request " << ex.getMessage();
+			err << "Exception while processing request " << ex.getMessage();
 			return 500;
 		}
 	} else {
 		
-		cout << "HTTP_METHOD or HTTP_URL environment variable are missing"; 
+		err << "HTTP_METHOD or HTTP_URL environment variable are missing" << "\n"; 
 		
 		return 256;
 	}
