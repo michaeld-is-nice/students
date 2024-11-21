@@ -10,6 +10,8 @@
 #include "../controllers/BaseController.h"
 #include "../controllers/StudentsController.h"
 
+#include "../reflect/reflect-main/reflect"
+
 using namespace std;
 
 int mvc::Dispatcher::dispatch() {
@@ -27,6 +29,9 @@ int mvc::Dispatcher::dispatch() {
 		try {
 						
 			Url url(resolveHttpMethod(sMethod), sUri);
+			
+			
+			
 			
 			if (url.uriStartsWith("/student"))
 				mtController = new StudentsController();
