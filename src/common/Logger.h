@@ -11,6 +11,7 @@ public:
 	Logger(std::ostream& stream, std::string level) : mOn(false), msLevel(level), mStream(stream) {};
 	Logger& enable();		
 	Logger& operator<< (const std::string&);
+	Logger& operator<< (const std::string_view&);
 	Logger& operator<< (const char*);
 };
 

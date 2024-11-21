@@ -11,6 +11,12 @@ HTTP_METHOD mvc::resolveHttpMethod(const string& sMethod) {
 	
 	if (sMethod == "GET")
 		return GET;
+	if (sMethod == "POST")
+		return GET;
+	if (sMethod == "PUT")
+		return PUT;
+	if (sMethod == "PATCH")
+		return PATCH;
 	
 	throw UrlException(string("Wrong HTTP method ") + sMethod);	
 }
@@ -22,12 +28,12 @@ Logger& mvc::operator<< (Logger& log, const Url& url) {
     return log;
 }
 
-bool Url::uriStartsWith(const string& sPrefix) {
+bool Url::uriStartsWith(const string& sPrefix) const {
 	
 	return mUri.compare(0, sPrefix.length(), sPrefix) == 0;
 }
 
-bool Url::isComply(const Url& url, HTTP_METHOD method, const string& sPrefix) {
+bool Url::isComply(const HTTP_METHOD method, const string& sPrefix) const {
 	
 	return  method == mMethod && uriStartsWith(sPrefix);
 }

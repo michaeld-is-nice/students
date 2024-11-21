@@ -10,6 +10,7 @@ objects = \
 	common/Logger.o \
 	mvc/Url.o \
 	mvc/Dispatcher.o \
+	mvc/ObjectMapper.o \
 	services/StudentsService.o \
 	controllers/BaseController.o \
 	controllers/StudentsController.o

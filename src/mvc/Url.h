@@ -35,8 +35,8 @@ public:
 	
 	friend Logger& operator<< (Logger&, const Url&);
 	
-	bool uriStartsWith(const string& prefix);
-	bool isComply(const Url& url, HTTP_METHOD method, const string& prefix);
+	bool uriStartsWith(const string& prefix) const;
+	bool isComply(const HTTP_METHOD method, const string& prefix) const;
 	
 	HTTP_METHOD getMethod() { return mMethod; }
 	string getUri() { return mUri; }

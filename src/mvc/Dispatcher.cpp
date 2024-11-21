@@ -43,11 +43,11 @@ int mvc::Dispatcher::dispatch() {
 			return mtController->handleRequest(url);
 		} catch (UrlException ex) {	
 			
-			err << "UrlException while processing request " << ex.getMessage();
+			err << "UrlException while processing request " << ex.getMessage() << "\n";
 			return 400;
 		} catch (Exception ex) {
 			
-			err << "Exception while processing request " << ex.getMessage();
+			err << "Exception while processing request " << ex.getMessage() << "\n";
 			return 500;
 		}
 	} else {

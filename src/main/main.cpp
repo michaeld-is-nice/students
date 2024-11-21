@@ -14,9 +14,9 @@ Logger err(std::cerr, "ERROR");
 
 int main(int argc, char **argv)
 {
-#if __cplusplus > 201703L	
-	cout << "C++ version 20" << endl;
-#endif	
+//#if __cplusplus > 201703L	
+//	cout << "C++ version 20" << endl;
+//#endif	
 
 	err.enable();
 	
@@ -25,10 +25,12 @@ int main(int argc, char **argv)
 	
 //	cout << reflect::type_name(url) << endl;
 	
-	typedef struct _str {int a; string b; int getS() {return a;}} str;
+	typedef struct {int aa; string bb; } str2;
+	typedef struct _str {int a; string b; str2 sssss; } str;
 	str s;
 	s.a = 9;
 	s.b = "a";
+	s.sssss.aa = 15;
 	
 	reflect::for_each([&](auto I) -> void {
     
@@ -46,13 +48,28 @@ int main(int argc, char **argv)
 			((string *) p)[0] = "Hello world";
 		}
 		
-        cout << "type_name " << reflect::type_name(s) << endl;                  // foo, foo
-        cout << "member_name " << reflect::member_name<I>(s) << endl;            // a  , b
-        cout << "type_name " << reflect::type_name(reflect::get<I>(s)) << endl; // int, E
-        cout << "value " << reflect::get<I>(s) << endl;                     // 42 , B
-        cout << "size " << reflect::size_of<I>(s) << endl;                 // 4  , 4
-        cout << "align " << reflect::align_of<I>(s) << endl;                // 4  , 4
-        cout << "offset " << reflect::offset_of<I>(s) << endl;          // 0  , 4
+//        cout << "type_name " << reflect::type_name(s) << endl;                  // foo, foo
+//        cout << "member_name " << reflect::member_name<I>(s) << endl;            // a  , b
+//        cout << "type_name " << reflect::type_name(reflect::get<I>(s)) << endl; // int, E
+//		
+		string_view typeName = reflect::type_name(reflect::get<I>(s));
+		if (typeName.compare("str2") == 0) {
+			
+			int offset = reflect::offset_of<I>(s);
+			char * p = ((char *) &s) + offset;
+			str2& inner = ((str2 *) p)[0];
+			
+			reflect::for_each([&](auto I2) -> void {
+			
+//				cout << "inner member_name " << reflect::member_name<I2>(inner) << endl;            // a  , b
+//				cout << "inner type_name " << reflect::type_name(reflect::get<I2>(inner)) << endl;
+			}, inner);
+		}
+		
+//        cout << "value " << reflect::get<I>(s) << endl;                     // 42 , B
+//        cout << "size " << reflect::size_of<I>(s) << endl;                 // 4  , 4
+//        cout << "align " << reflect::align_of<I>(s) << endl;                // 4  , 4
+//        cout << "offset " << reflect::offset_of<I>(s) << endl;          // 0  , 4
 		cout << endl;
   }, s);
 	

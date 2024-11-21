@@ -15,6 +15,13 @@ Logger& Logger::operator<< (const std::string& sMessage) {
 	return *this;
 }
 
+Logger& Logger::operator<< (const std::string_view& sMessage) {
+	if (mOn)
+		mStream << sMessage;
+		
+	return *this;
+}
+
 Logger& Logger::operator<< (const char* pszMessage) {
 	if (mOn)
 		mStream << pszMessage;
