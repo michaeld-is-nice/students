@@ -4,3 +4,7 @@ students.mk
 students.project
 *.o
 src/students
+CMakeLists.txt
+CMakeLists.txt.user
+build
+*.swp
