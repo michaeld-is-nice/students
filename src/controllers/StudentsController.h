@@ -15,7 +15,7 @@ typedef struct {
 	std::string lastName; 
 	int birthYear;
 	CourseDto<int> course;
-    std::map<std::string, CourseDto<int>> coursesMap;
+    std::map<std::string, CourseDto<int> > coursesMap;
 } StudentDto;
 
 

@@ -10,3 +10,7 @@ build
 *.swp
 .DS_Store
 
+/Debug/
+.cproject
+.project
+.settings

@@ -8,6 +8,8 @@
 #include "../common/Logger.h"
 #include "../controllers/StudentsController.h"
 
+class ObjectMapper;
+
 extern std::map<std::string, ObjectMapper*> mappers;
 
 class ObjectMapper {
@@ -63,7 +65,7 @@ private:
 
         // map.size();
         // map[""] = CourseDto<int>();
-        mappers["CourseDto"] -> readInput(&courseDto)
+        //mappers["CourseDto"] -> readInput(&courseDto);
     }
 
     template<> void handleMap<CourseDto<int>>(CourseDto<int> v) {}
