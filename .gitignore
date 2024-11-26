@@ -8,3 +8,5 @@ CMakeLists.txt
 CMakeLists.txt.user
 build
 *.swp
+.DS_Store
+

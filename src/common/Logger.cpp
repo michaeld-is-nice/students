@@ -28,3 +28,10 @@ Logger& Logger::operator<< (const char* pszMessage) {
 		
 	return *this;	
 }
+
+Logger& Logger::operator<< (const int iMessage) {
+    if (mOn)
+        mStream << iMessage;
+
+    return *this;
+}

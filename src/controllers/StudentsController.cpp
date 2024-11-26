@@ -11,7 +11,7 @@ using namespace std;
 
 static Initializer init([]() -> void {
 	mappers["StudentDto"] = new ObjectMapperT<StudentDto>();
-	mappers["CourseDto"] = new ObjectMapperT<CourseDto<string>>();
+    mappers["CourseDto"] = new ObjectMapperT<CourseDto<int>>();
 });
 
 int StudentsController::handleRequest(const mvc::Url url) {
@@ -19,9 +19,9 @@ int StudentsController::handleRequest(const mvc::Url url) {
 	if (url.isComply(mvc::PUT, "/student")) {
 		
 		StudentDto studentDto;
-		CourseDto<string> courseDto;
+        // CourseDto<int> courseDto;
 		mappers["StudentDto"] -> readInput(&studentDto);
-		mappers["CourseDto"] -> readInput(&courseDto);
+        // mappers["CourseDto"] -> readInput(&courseDto);
 		
 		return handleCreateStudent(studentDto);
 	}

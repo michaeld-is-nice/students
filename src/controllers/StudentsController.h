@@ -1,8 +1,9 @@
 #pragma once
 
-#include "BaseController.h"
-
 #include <string>
+#include <map>
+
+#include "BaseController.h"
 
 template<typename T> struct CourseDto {
 	std::string fieldOfStudy;
@@ -14,6 +15,7 @@ typedef struct {
 	std::string lastName; 
 	int birthYear;
 	CourseDto<int> course;
+    std::map<std::string, CourseDto<int>> coursesMap;
 } StudentDto;
 
 
