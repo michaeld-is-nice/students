@@ -5,37 +5,35 @@
 
 #include "../mvc/ObjectMapper.h"
 #include "../mvc/Url.h"
-#include "../common/Initializer.h"
+#include "../common/Logger.h"
 
 using namespace std;
 
-static Initializer init([]() -> void {
-	mappers["StudentDto"] = new ObjectMapperT<StudentDto>();
-    mappers["CourseDto"] = new ObjectMapperT<CourseDto<int>>();
-});
+int StudentsController::handleRequest(const mvc::Url url) const {
 
-int StudentsController::handleRequest(const mvc::Url url) {
 
-	if (url.isComply(mvc::PUT, "/student")) {
+	if (url.isComply(mvc::PUT, "/students")) {
 		
+		ObjectMapper<StudentDto> om;
+		ObjectMapper<CourseDto<int>> om2;
+
 		StudentDto studentDto;
-        // CourseDto<int> courseDto;
-		mappers["StudentDto"] -> readInput(&studentDto);
-        // mappers["CourseDto"] -> readInput(&courseDto);
-		
+		om.readInput(studentDto);
+		err << studentDto.firstName;
+
+		CourseDto<int> courseDto;
+		om2.readInput(courseDto);
+		err << courseDto.firstName;
+
+
 		return handleCreateStudent(studentDto);
 	}
 	
 	return 200;
 }
 
-int StudentsController::handleCreateStudent(StudentDto&) {
+int StudentsController::handleCreateStudent(const StudentDto& dto) const {
 	
-//	string s;
-//	
-//	cin >> s;
-//	
-//	cout << "{" << s << "}";
 	
 	return 200;
 }

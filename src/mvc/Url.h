@@ -30,7 +30,7 @@ class Url
 	string mUri;
 	
 public:
-	Url(HTTP_METHOD method, const string uri) : mMethod(method), mUri(uri) {};
+	Url(HTTP_METHOD method, const string uri) : mMethod{method}, mUri{uri} {};
 	~Url() {};
 	
 	friend Logger& operator<< (Logger&, const Url&);

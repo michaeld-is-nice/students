@@ -1,3 +1,3 @@
 #include "ObjectMapper.h"
 
-std::map<std::string, ObjectMapper*> mappers;
+//std::map<std::string, ObjectMapper*> mappers;

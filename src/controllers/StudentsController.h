@@ -6,7 +6,7 @@
 #include "BaseController.h"
 
 template<typename T> struct CourseDto {
-	std::string fieldOfStudy;
+	std::string firstName;
 	T whatever;
 };
 
@@ -22,10 +22,10 @@ typedef struct {
 class StudentsController : public BaseController
 {
 	
-	int handleCreateStudent(StudentDto&);
+	int handleCreateStudent(const StudentDto&) const;
 	
 public:
 	
-	virtual int handleRequest(const mvc::Url url);
+	virtual int handleRequest(const mvc::Url url) const;
 };
 

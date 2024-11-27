@@ -28,10 +28,7 @@ int mvc::Dispatcher::dispatch() {
 		
 		try {
 						
-			Url url(resolveHttpMethod(sMethod), sUri);
-			
-			
-			
+			Url url{resolveHttpMethod(sMethod), sUri};
 			
 			if (url.uriStartsWith("/student"))
 				mtController = new StudentsController();
